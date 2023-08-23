@@ -11,16 +11,16 @@ Driver Version    :  1.0
 ********************************************************************************/
 
 /*******************************************************************************
-Para usar el cï¿½digo con bootloader, configurar como lo indica MICROSIDE:
+Para usar el código con bootloader, configurar como lo indica MICROSIDE:
 1) Tools> Options> Output> Output Settings> Marcar "Long HEX format"
 2) Project> Edit Project> Insertar 48.000000 en "MCU Clock Frequency [MHz]" box
 ********************************************************************************/
 
 #pragma orgall 0x1FFF            //Espacio reservado para el bootloader
 
-#include "HC-SR04.h"             //Incluir librerï¿½a para el sensor HC-SR04
+#include "HC-SR04.h"             //Incluir librería para el sensor HC-SR04
 
-//Referencias externas de conexiï¿½n del modulo LCD
+//Referencias externas de conexión del modulo LCD
 sbit LCD_RS at LATB0_bit;
 sbit LCD_EN at LATB2_bit;
 sbit LCD_D4 at LATB3_bit;
@@ -34,14 +34,14 @@ sbit LCD_D4_Direction at TRISB3_bit;
 sbit LCD_D5_Direction at TRISB4_bit;
 sbit LCD_D6_Direction at TRISB5_bit;
 sbit LCD_D7_Direction at TRISB6_bit;
-//Fin de las referencias externas de conexiï¿½n del modulo LCD
+//Fin de las referencias externas de conexión del modulo LCD
 
-//Referencias externas de conexiï¿½n del modulo HCSR04
+//Referencias externas de conexión del modulo HCSR04
 sbit HCSR04_Trigger at RC1_Bit;
 sbit HCSR04_Echo at RC0_Bit;
 sbit HCSR04_Trigger_Direction at TRISC1_Bit;
 sbit HCSR04_Echo_Direction at TRISC0_Bit;
-//Fin de las referencias externas de conexiï¿½n del modulo HCSR04
+//Fin de las referencias externas de conexión del modulo HCSR04
 
 char text[8];
 unsigned Distancia;
@@ -55,7 +55,7 @@ void main() org 0x2000 {
   C1ON_bit = 0;                      // Deshabilita los comparadores
   C2ON_bit = 0;
 
-  HCSR04_Init(3);                    // Conexiï¿½n con el sensor HCSR04
+  HCSR04_Init(3);                    // Conexión con el sensor HCSR04
 
   Lcd_Init();                        // Inicializa el LCD
   Lcd_Cmd(_LCD_CLEAR);               // Limpia el LCD
@@ -64,7 +64,7 @@ void main() org 0x2000 {
   while(1)
   {
      Distancia = HCSR04_Read()/10;   //Se obtiene la lectura del sensor
-     WordToStrWithZeros( Distancia, text );  //Se convierte el valor que se imprimirï¿½ en el LCD
+     WordToStrWithZeros( Distancia, text );  //Se convierte el valor que se imprimirá en el LCD
      Lcd_Out( 1, 1, "Dist.: " );
      Lcd_Out_CP( text );
      Lcd_Out_CP( "cm" );
